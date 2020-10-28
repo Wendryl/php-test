@@ -1,0 +1,27 @@
+{
+    "name": "wendryl/php-test",
+    "description": "A simple CRUD app built with PHP for a job test.",
+    "type": "project",
+    "require": {
+        "coffeecode/router": "dev-master",
+        "coffeecode/datalayer": "dev-master",
+        "twbs/bootstrap": "^5.0@alpha"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wendryl",
+            "email": "wendryl10000@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/" 
+        },
+        "files": [
+            "source/Config.php",
+            "source/Helpers.php"
+        ]
+    }
+}
