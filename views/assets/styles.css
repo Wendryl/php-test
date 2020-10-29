@@ -1,0 +1,31 @@
+:root {
+    --black: #3f3f3f;
+    --blue: #2e3c7d;
+    --light-grey: #f2f2f2;
+    --dark-grey: #e5e5e5;
+    --darker-grey: #c5c5c5;
+}
+
+body {
+    background: var(--dark-grey);
+}
+
+.text-primary {
+    color: var(--blue) !important;
+}
+
+.text-secondary {
+    color: var(--black) !important;
+}
+
+.border-secondary {
+    border-color: var(--dark-grey) !important;
+}
+
+.bg-primary {
+    background: var(--blue) !important;
+}
+
+.bg-secondary {
+    background: var(--light-grey) !important;
+}
