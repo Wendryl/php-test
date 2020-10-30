@@ -28,7 +28,7 @@
         </div>
         <div class="container border border-2 mt-3">
             <div class="row">
-                <div class="col-8 p-3">
+                <div class="col-lg-8 col-md-7 p-lg-3 p-sm-0">
                     <div class="bg-light pt-4 px-3 pb-2 shadow-sm">
                         <h5 class="text-secondary">Lista de veículos</h5>
                         <ul class="list-group striped-list">
@@ -107,7 +107,7 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-4 p-3">
+                <div class="col-lg-4 col-md-5 p-3">
                     <div class="bg-light w-100">
 
                     </div>
