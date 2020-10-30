@@ -2,6 +2,7 @@
     --black: #3f3f3f;
     --blue: #2e3c7d;
     --light-grey: #f2f2f2;
+    --grey: #cccccc;
     --dark-grey: #e5e5e5;
     --darker-grey: #c5c5c5;
 }
@@ -18,6 +19,10 @@ body {
     color: var(--black) !important;
 }
 
+.text-light {
+    color: var(--grey) !important;
+}
+
 .border-secondary {
     border-color: var(--dark-grey) !important;
 }
@@ -28,4 +33,12 @@ body {
 
 .bg-secondary {
     background: var(--light-grey) !important;
+}
+
+ul.striped-list > li:nth-of-type(odd) {
+    background: var(--light-grey);
+}
+
+li:hover {
+    background: var(--dark-grey) !important;
 }
