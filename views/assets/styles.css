@@ -1,8 +1,9 @@
 :root {
     --black: #3f3f3f;
     --blue: #2e3c7d;
+    --dark-blue: #131b5a;
     --light-grey: #f2f2f2;
-    --grey: #cccccc;
+    --grey: #a2a2a2;
     --dark-grey: #e5e5e5;
     --darker-grey: #c5c5c5;
 }
@@ -41,4 +42,12 @@ ul.striped-list > li:nth-of-type(odd) {
 
 li:hover {
     background: var(--dark-grey) !important;
+}
+
+.btn-primary {
+    background: var(--blue) !important;
+}
+
+.btn-primary:hover {
+    background: var(--dark-blue) !important;
 }
