@@ -18,7 +18,11 @@ class Router {
         }
 
         if ($url == "new" && $method == "POST") {
-            $this->novoCarro();
+            if ($this->novoCarro()) {
+                header("Location: " . SITE . "?msg=success&type=create");
+            } else {
+                header("Location: " . SITE . "?msg=failed&type=create");
+            }
         }
     }
 
@@ -29,6 +33,7 @@ class Router {
         $result = $carro->find()->fetch(true);
         $i = 0;
         foreach ($result as $carro) {
+            $jsonObj[$i]["id"] = $carro->id;
             $jsonObj[$i]["marca"] = $carro->marca;
             $jsonObj[$i]["modelo"] = $carro->modelo;
             $jsonObj[$i]["ano"] = $carro->ano;

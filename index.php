@@ -25,7 +25,7 @@
                     </button>
                     <button class="btn btn-outline-secondary border border-secondary border-2 bg-primary"
                             type="button" data-toggle="modal" data-target="#modalVeiculo"
-                            onclick="novoVeiculo('<?= SITE . "?fn=new" ?>')">
+                            onclick="novoVeiculo('<?= SITE . "app/?fn=new" ?>')">
                         <i class="fas fa-plus text-white"></i>
                     </button>
                 </div>
@@ -33,12 +33,17 @@
         </div>
         <div class="container my-3">
             <div class="row">
+                <div class="col-12 bg-danger rounded d-flex align-content-center py-2 d-none" id="info-container">
+                    <span class="text-white" id="info-msg"></span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-8 col-md-12 p-lg-2 p-sm-0">
                     <div class="bg-light pt-4 px-3 pb-2 shadow-sm">
                         <h5 class="text-secondary"><b>Lista de veículos</b></h5>
                         <ul class="list-group striped-list" id="lista-veiculos">
                             <?php
-                            $return = file_get_contents(SITE . "?fn=show");
+                            $return = file_get_contents(SITE . "app/?fn=show");
                             $veiculos = json_decode($return, true);
                             if ($veiculos !== NULL):
                                 foreach ($veiculos as $carro):
@@ -50,16 +55,20 @@
                                             <p class="text-secondary"><b><?= $carro['ano'] ?></b></p>
                                         </div>
                                         <span class="d-flex">
-                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo()">
+                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<?= $carro['id'] ?>', '<?= SITE . "app/?fn=update" ?>')">
                                                 <i class="fas fa-edit fa-2x"></i>
                                             </a>
                                         </span>
                                     </li>
                                     <?php
                                 endforeach;
-                            endif;
-                            ?>
-                        </ul>
+                            else:
+                                ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <h6>Nenhum veículo cadastrado...</h6>
+                                </li>
+                            </ul>
+                        <?php endif; ?>
                         <nav aria-label="...">
                             <ul class="pagination pagination-sm justify-content-end mt-5">
                                 <li class="page-item disabled">
@@ -119,26 +128,27 @@
                             <div class="modal-header">
                                 <h5 class="modal-title titulo-modal" id="modalVeiculo">Detalhes</h5>
                             </div>
-                            <form action="<?php SITE . "?fn=new" ?>" id="form-veiculo" method="post">
+                            <form action="<?php SITE . "app/?fn=new" ?>" id="form-veiculo" method="post">
                                 <div class="modal-body">
                                     <div class="form-group my-3">
+                                        <span class="text-danger text-center d-none" id="msg-form">Preencha os campos necessários!</span><br>
                                         <label for="modelo-carro">Veículo</label>
                                         <input type="text" class="form-control" id="modelo-carro" name="modelo-carro" aria-describedby="emailHelp" value="Uno Vivace">
                                     </div>
                                     <div class="row my-3">
                                         <div class="form-group col-6">
                                             <label for="marca-carro">Marca</label>
-                                            <input type="text" class="form-control" id="marca-carro" name="marca-carro" value="FIAT">
+                                            <input type="text" class="form-control" id="marca-carro" name="marca-carro">
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="ano-carro">Ano</label>
-                                            <input type="text" class="form-control" id="ano-carro" name="ano-carro" value="2015">
+                                            <input type="text" class="form-control" id="ano-carro" name="ano-carro">
                                         </div>
                                     </div>
                                     <div class="row my-3">
                                         <div class="form-group col-12">
                                             <label for="desc-carro">Descrição</label>
-                                            <textarea class="form-control" rows="4" id="desc-carro" name="desc-carro" value="TESTE">
+                                            <textarea class="form-control" rows="4" id="desc-carro" name="desc-carro">
                                             </textarea>
                                         </div>
                                     </div>
@@ -148,7 +158,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary rounded-0 px-5">SALVAR</button>
+                                    <button type="submit" class="btn btn-primary rounded-0 px-5" id="btn-submit">SALVAR</button>
                                 </div>
                             </form>
                         </div>

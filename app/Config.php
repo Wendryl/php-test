@@ -1,13 +1,13 @@
 <?php
 
-define("SITE", "http://localhost/projects/php-test/app/");
+define("SITE", "http://localhost/projects/php-test/");
 
 define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
     "host" => "localhost",
     "port" => "3306",
     "dbname" => "car_store",
-    "username" => "admin",
+    "username" => "root",
     "passwd" => "root",
     "options" => [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
