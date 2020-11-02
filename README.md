@@ -12,7 +12,7 @@ composer install
 mysql -u root -p
 {your_password}
 ```
-Insie mysql shell create a database called car_store
+Inside mysql shell create a database called car_store
 ```bash
 create database car_store
 exit
