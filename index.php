@@ -22,7 +22,7 @@
                     <button class="btn btn-outline-secondary border border-secondary border-2 bg-secondary" type="button">
                         <i class="fas fa-search text-secondary bg-secondary"></i>
                     </button>
-                    <button class="btn btn-outline-secondary border border-secondary border-2 bg-primary" type="button">
+                    <button class="btn btn-outline-secondary border border-secondary border-2 bg-primary" type="button" data-toggle="modal" data-target="#modalVeiculo" onclick="novoVeiculo()">
                         <i class="fas fa-plus text-white"></i>
                     </button>
                 </div>
@@ -140,10 +140,10 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content rounded-0 px-2">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalVeiculo">Detalhes</h5>
+                                <h5 class="modal-title titulo-modal" id="modalVeiculo">Detalhes</h5>
                             </div>
                             <div class="modal-body">
-                                <form action="Vehicle.update">
+                                <form action="Vehicle.update" id="form-veiculo">
                                     <div class="form-group my-3">
                                         <label for="modelo-carro">Veículo</label>
                                         <input type="email" class="form-control" id="modelo-carro" aria-describedby="emailHelp" value="Uno Vivace">
@@ -159,7 +159,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check my-3">
-                                        <input type="checkbox" class="form-check-input" id="veiculo-vendido" checked="true">
+                                        <input type="checkbox" class="form-check-input" id="veiculo-vendido" checked="checked">
                                         <label class="form-check-label" for="veiculo-vendido">Vendido</label>
                                     </div>
                                 </form>
