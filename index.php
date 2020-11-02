@@ -1,3 +1,4 @@
+<?php require './vendor/autoload.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -22,7 +23,9 @@
                     <button class="btn btn-outline-secondary border border-secondary border-2 bg-secondary" type="button">
                         <i class="fas fa-search text-secondary bg-secondary"></i>
                     </button>
-                    <button class="btn btn-outline-secondary border border-secondary border-2 bg-primary" type="button" data-toggle="modal" data-target="#modalVeiculo" onclick="novoVeiculo()">
+                    <button class="btn btn-outline-secondary border border-secondary border-2 bg-primary"
+                            type="button" data-toggle="modal" data-target="#modalVeiculo"
+                            onclick="novoVeiculo('<?= SITE . "?fn=new" ?>')">
                         <i class="fas fa-plus text-white"></i>
                     </button>
                 </div>
@@ -33,55 +36,29 @@
                 <div class="col-lg-8 col-md-12 p-lg-2 p-sm-0">
                     <div class="bg-light pt-4 px-3 pb-2 shadow-sm">
                         <h5 class="text-secondary"><b>Lista de veículos</b></h5>
-                        <ul class="list-group striped-list">
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <div class="d-inline-block">
-                                    <h6>FIAT</h6>
-                                    <strong class="text-primary">Uno Vivace</strong>
-                                    <p class="text-secondary"><b>2015</b></p>
-                                </div>
-                                <span class="d-flex">
-                                    <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo">
-                                        <i class="fas fa-edit fa-2x"></i>
-                                    </a>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <div class="d-inline-block">
-                                    <h6>FIAT</h6>
-                                    <strong class="text-primary">Uno Vivace</strong>
-                                    <p class="text-secondary"><b>2015</b></p>
-                                </div>
-                                <span class="d-flex">
-                                    <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo">
-                                        <i class="fas fa-edit fa-2x"></i>
-                                    </a>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <div class="d-inline-block">
-                                    <h6>FIAT</h6>
-                                    <strong class="text-primary">Uno Vivace</strong>
-                                    <p class="text-secondary"><b>2015</b></p>
-                                </div>
-                                <span class="d-flex">
-                                    <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo">
-                                        <i class="fas fa-edit fa-2x"></i>
-                                    </a>
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <div class="d-inline-block">
-                                    <h6>FIAT</h6>
-                                    <strong class="text-primary">Uno Vivace</strong>
-                                    <p class="text-secondary"><b>2015</b></p>
-                                </div>
-                                <span class="d-flex">
-                                    <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo">
-                                        <i class="fas fa-edit fa-2x"></i>
-                                    </a>
-                                </span>
-                            </li>
+                        <ul class="list-group striped-list" id="lista-veiculos">
+                            <?php
+                            $return = file_get_contents(SITE . "?fn=show");
+                            $veiculos = json_decode($return, true);
+                            if ($veiculos !== NULL):
+                                foreach ($veiculos as $carro):
+                                    ?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div class="d-inline-block">
+                                            <h6><?= $carro['marca'] ?></h6>
+                                            <strong class="text-primary"><?= $carro['modelo'] ?></strong>
+                                            <p class="text-secondary"><b><?= $carro['ano'] ?></b></p>
+                                        </div>
+                                        <span class="d-flex">
+                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo()">
+                                                <i class="fas fa-edit fa-2x"></i>
+                                            </a>
+                                        </span>
+                                    </li>
+                                    <?php
+                                endforeach;
+                            endif;
+                            ?>
                         </ul>
                         <nav aria-label="...">
                             <ul class="pagination pagination-sm justify-content-end mt-5">
@@ -132,7 +109,7 @@
                         </div>
                         <div class="row px-3 d-flex justify-content-end position-absolute bottom-0 w-100 mb-3 mt-sm-5 mb-sm-2">
                             <hr>
-                            <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo">EDITAR</button>
+                            <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo()">EDITAR</button>
                         </div>
                     </div>
                 </div>
@@ -142,31 +119,38 @@
                             <div class="modal-header">
                                 <h5 class="modal-title titulo-modal" id="modalVeiculo">Detalhes</h5>
                             </div>
-                            <div class="modal-body">
-                                <form action="Vehicle.update" id="form-veiculo">
+                            <form action="<?php SITE . "?fn=new" ?>" id="form-veiculo" method="post">
+                                <div class="modal-body">
                                     <div class="form-group my-3">
                                         <label for="modelo-carro">Veículo</label>
-                                        <input type="email" class="form-control" id="modelo-carro" aria-describedby="emailHelp" value="Uno Vivace">
+                                        <input type="text" class="form-control" id="modelo-carro" name="modelo-carro" aria-describedby="emailHelp" value="Uno Vivace">
                                     </div>
                                     <div class="row my-3">
                                         <div class="form-group col-6">
                                             <label for="marca-carro">Marca</label>
-                                            <input type="text" class="form-control" id="marca-carro" value="FIAT">
+                                            <input type="text" class="form-control" id="marca-carro" name="marca-carro" value="FIAT">
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="ano-carro">Ano</label>
-                                            <input type="text" class="form-control" id="ano-carro" value="2015">
+                                            <input type="text" class="form-control" id="ano-carro" name="ano-carro" value="2015">
+                                        </div>
+                                    </div>
+                                    <div class="row my-3">
+                                        <div class="form-group col-12">
+                                            <label for="desc-carro">Descrição</label>
+                                            <textarea class="form-control" rows="4" id="desc-carro" name="desc-carro" value="TESTE">
+                                            </textarea>
                                         </div>
                                     </div>
                                     <div class="form-check my-3">
                                         <input type="checkbox" class="form-check-input" id="veiculo-vendido" checked="checked">
                                         <label class="form-check-label" for="veiculo-vendido">Vendido</label>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary rounded-0 px-5">SALVAR</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary rounded-0 px-5">SALVAR</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

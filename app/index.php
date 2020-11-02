@@ -3,13 +3,10 @@
 require '../vendor/autoload.php';
 
 use App\Models\Carros;
+use App\Controllers\Router;
 
-$carro = new Carros();
+$route = $_GET["fn"];
+$method = $_SERVER["REQUEST_METHOD"];
 
-$carro->modelo = "Uno";
-$carro->marca = "Fiat";
-$carro->ano = "2015";
-
-if (!$carro->save()) {
-    echo $carro->fail()->getMessage();
-}
+$router = new Router();
+$router->route($route, $method);

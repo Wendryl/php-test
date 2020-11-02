@@ -1,5 +1,7 @@
 <?php
 
+define("SITE", "http://localhost/projects/php-test/app/");
+
 define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
     "host" => "localhost",

@@ -3,7 +3,6 @@
     "description": "A simple CRUD app built with PHP for a job test.",
     "type": "project",
     "require": {
-        "coffeecode/router": "dev-master",
         "coffeecode/datalayer": "dev-master",
         "twbs/bootstrap": "^5.0@alpha",
         "fortawesome/font-awesome": "dev-master"
