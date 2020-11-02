@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-12 p-lg-2 p-sm-0">
+                <div class="col-lg-8 col-md-12 p-lg-2 p-sm-0 order-lg-first order-md-last ">
                     <div class="bg-light pt-4 px-3 pb-2 shadow-sm">
                         <h5 class="text-secondary"><b>Lista de veículos</b></h5>
                         <ul class="list-group striped-list" id="lista-veiculos">
@@ -58,6 +58,9 @@
                                             <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<?= $carro['id'] ?>', '<?= SITE . "app/?fn=update" ?>')">
                                                 <i class="fas fa-edit fa-2x"></i>
                                             </a>
+                                        </span>
+                                        <span class="d-none">
+                                            <?= $carro['descricao'] ?>
                                         </span>
                                     </li>
                                     <?php
@@ -95,7 +98,7 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 p-lg-2 p-sm-0 mt-lg-0 mt-md-2">
+                <div class="col-lg-4 col-md-12 p-lg-2 p-sm-0 mt-lg-0 mt-md-2 order-lg-last order-md-first mb-md-3">
                     <div class="bg-light pt-4 px-3 pb-2 shadow-sm d-inline-block h-100 position-relative">
                         <h6 class="text-secondary"><b>Detalhes do veículo</b></h6>
                         <hr>
@@ -116,7 +119,7 @@
                                 Fusce ac neque in sapien tempus feugiat. Nulla non augue congue, egestas lectus et, posuere elit.
                             </p>
                         </div>
-                        <div class="row px-3 d-flex justify-content-end position-absolute bottom-0 w-100 mb-3 mt-sm-5 mb-sm-2">
+                        <div class="row px-3 d-flex justify-content-end position-absolute bottom-0 w-100 mb-3 mt-sm-5 mb-sm-2 pt-sm-5">
                             <hr>
                             <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo()">EDITAR</button>
                         </div>
