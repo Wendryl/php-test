@@ -18,11 +18,10 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Source\\": "source/" 
+            "App\\": "app/"
         },
         "files": [
-            "source/Config.php",
-            "source/Helpers.php"
+            "app/Config.php"
         ]
     }
 }
