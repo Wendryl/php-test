@@ -35,6 +35,7 @@ class Router {
             $jsonObj[$i]["descricao"] = $carro->descricao;
             $i++;
         }
+        header("Content-Type: application/json");
         echo json_encode($jsonObj);
     }
 
@@ -47,6 +48,7 @@ class Router {
         $carro->descricao = filter_var($_POST["desc-carro"], FILTER_SANITIZE_STRING);
 
         if (!$carro->save()) {
+            header("Content-Type: application/json");
             echo json_encode(["Message", $carro->fail()->getMessage()]);
             return false;
         }
