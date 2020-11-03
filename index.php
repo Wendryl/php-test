@@ -48,7 +48,7 @@
                             if ($veiculos !== NULL):
                                 foreach ($veiculos as $carro):
                                     ?>
-                                    <li id='<?= $carro['id'] ?>' class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <li id="<?= $carro['id'] ?>" class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <div class = "d-inline-block">
                                             <h6><? = $carro['marca']
                                                 ?></h6>
@@ -56,8 +56,8 @@
                                             <p class="text-secondary"><b><?= $carro['ano'] ?></b></p>
                                         </div>
                                         <span class="d-flex">
-                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<? = $carro['id'] ?>', '<?= SITE . "app/?fn=update" ?>')">
-                                                <i class="fas fa-edit fa-2x"></i>
+                                            <a id="<?= $carro['id'] ?>" class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<?= $carro['id'] ?>', '<?= SITE . "app/?fn=update&id=" . $carro['id'] ?>')">
+                                                <i id="<?= $carro['id'] ?>" class="fas fa-edit fa-2x"></i>
                                             </a>
                                         </span>
                                         <span class="d-none">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="row px-3 d-flex justify-content-end position-absolute bottom-0 w-100 mb-3 mt-sm-5 mb-sm-2 pt-sm-5">
                             <hr>
-                            <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo(<?= $veiculos[0]['id'] ?>)">EDITAR</button>
+                            <button id="btn-edit-din" type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo(<?= $veiculos[0]['id'] ?>)">EDITAR</button>
                         </div>
                     </div>
                 </div>

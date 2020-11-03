@@ -34,6 +34,14 @@ class Router {
         if ($url == "showSingle") {
             $this->exibirCarro($params["id"]);
         }
+
+        if ($url == "update") {
+            if ($this->atualizarCarro($params["id"])) {
+                header("Location: " . SITE . "?msg=success&type=update");
+            } else {
+                header("Location: " . SITE . "?msg=failed&type=update");
+            }
+        }
     }
 
     private function exibirCarros() {
@@ -76,6 +84,27 @@ class Router {
     private function novoCarro(): bool {
         $jsonObj;
         $carro = new Carros();
+        $carro->modelo = filter_var($_POST["modelo-carro"], FILTER_SANITIZE_STRING);
+        $carro->marca = filter_var($_POST["marca-carro"], FILTER_SANITIZE_STRING);
+        $carro->ano = filter_var($_POST["ano-carro"], FILTER_SANITIZE_STRING);
+        $carro->descricao = filter_var($_POST["desc-carro"], FILTER_SANITIZE_STRING);
+
+        if (!$carro->save()) {
+            header("Content-Type: application/json");
+            echo json_encode(["Message", $carro->fail()->getMessage()]);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param type $id
+     * @return bool
+     */
+    private function atualizarCarro($id): bool {
+        $jsonObj;
+        $carro = (new Carros())->findById($id);
         $carro->modelo = filter_var($_POST["modelo-carro"], FILTER_SANITIZE_STRING);
         $carro->marca = filter_var($_POST["marca-carro"], FILTER_SANITIZE_STRING);
         $carro->ano = filter_var($_POST["ano-carro"], FILTER_SANITIZE_STRING);

@@ -24,7 +24,6 @@ function editarVeiculo(id, url) {
     $.ajax({
         url: ("http://localhost/projects/php-test/app/?fn=showSingle&id=" + id)
     }).done(function(data){
-        console.log(data.descricao);
         $("#modelo-carro").attr("value", data.modelo);
         $("#marca-carro").attr("value", data.marca);
         $("#ano-carro").attr("value", data.ano);
@@ -93,8 +92,6 @@ $("document").ready(function(){
             return (el.split("="))[1];
         });
 
-        console.log(msg_param);
-
         if(msg_param[0] == "success") {
 
             if(msg_param[1] == "create") {
@@ -142,10 +139,12 @@ $("document").ready(function(){
 $("li.list-group-item").mouseover(function(ev){
 
     var id = ev.target.id;
+    var url_action = "http://localhost/projects/php-test/app/?fn=update&id=" + id;
 
     $.ajax({
         url: ("http://localhost/projects/php-test/app/?fn=showSingle&id=" + id)
     }).done(function(data){
+        $("#btn-edit-din").attr("onclick", "editarVeiculo(" + id + ", " + url_action + ")");
         $("#cur-vehicle-modelo").text(data.modelo);
         $("#cur-vehicle-marca").text( data.marca);
         $("#cur-vehicle-ano").text(data.ano);
