@@ -144,7 +144,7 @@ $("li.list-group-item").mouseover(function(ev){
     $.ajax({
         url: ("http://localhost/projects/php-test/app/?fn=showSingle&id=" + id)
     }).done(function(data){
-        $("#btn-edit-din").attr("onclick", "editarVeiculo(" + id + ", " + url_action + ")");
+        $("#btn-edit-din").attr("onclick", "editarVeiculo(" + id + ", '" + url_action + "')");
         $("#cur-vehicle-modelo").text(data.modelo);
         $("#cur-vehicle-marca").text( data.marca);
         $("#cur-vehicle-ano").text(data.ano);
