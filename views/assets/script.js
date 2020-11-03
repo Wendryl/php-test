@@ -20,6 +20,17 @@ function editarVeiculo(id, url) {
     $("#modelo-carro").attr("placeholder", "");
     $("#marca-carro").attr("placeholder", "");
     $("#ano-carro").attr("placeholder", "");
+
+    $.ajax({
+        url: ("http://localhost/projects/php-test/app/?fn=showSingle&id=" + id)
+    }).done(function(data){
+        console.log(data.descricao);
+        $("#modelo-carro").attr("value", data.modelo);
+        $("#marca-carro").attr("value", data.marca);
+        $("#ano-carro").attr("value", data.ano);
+        $("#desc-carro").text(data.descricao);
+    });
+
 }
 
 $("#btn-submit").click(function(ev){
@@ -125,5 +136,20 @@ $("document").ready(function(){
         }
 
     }
+
+});
+
+$("li.list-group-item").mouseover(function(ev){
+
+    var id = ev.target.id;
+
+    $.ajax({
+        url: ("http://localhost/projects/php-test/app/?fn=showSingle&id=" + id)
+    }).done(function(data){
+        $("#cur-vehicle-modelo").text(data.modelo);
+        $("#cur-vehicle-marca").text( data.marca);
+        $("#cur-vehicle-ano").text(data.ano);
+        $("#cur-vehicle-desc").text(data.descricao);
+    });
 
 });

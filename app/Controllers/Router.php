@@ -11,7 +11,13 @@ use App\Models\Carros;
  */
 class Router {
 
-    public function route($url, $method) {
+    /**
+     *
+     * @param string $url
+     * @param string $method
+     * @param string $params = ''
+     */
+    public function route($url, $method, $params = '') {
 
         if ($url == "show") {
             $this->exibirCarros();
@@ -23,6 +29,10 @@ class Router {
             } else {
                 header("Location: " . SITE . "?msg=failed&type=create");
             }
+        }
+
+        if ($url == "showSingle") {
+            $this->exibirCarro($params["id"]);
         }
     }
 
@@ -40,6 +50,25 @@ class Router {
             $jsonObj[$i]["descricao"] = $carro->descricao;
             $i++;
         }
+        header("Content-Type: application/json");
+        echo json_encode($jsonObj);
+    }
+
+    /**
+     *
+     * @param type $id
+     */
+    private function exibirCarro($id) {
+        $jsonObj;
+        $carro = new Carros();
+        $result = $carro->findById($id);
+
+        $jsonObj["id"] = $result->id;
+        $jsonObj["modelo"] = $result->modelo;
+        $jsonObj["marca"] = $result->marca;
+        $jsonObj["ano"] = $result->ano;
+        $jsonObj["descricao"] = $result->descricao;
+
         header("Content-Type: application/json");
         echo json_encode($jsonObj);
     }

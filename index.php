@@ -48,14 +48,15 @@
                             if ($veiculos !== NULL):
                                 foreach ($veiculos as $carro):
                                     ?>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <div class="d-inline-block">
-                                            <h6><?= $carro['marca'] ?></h6>
+                                    <li id='<?= $carro['id'] ?>' class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div class = "d-inline-block">
+                                            <h6><? = $carro['marca']
+                                                ?></h6>
                                             <strong class="text-primary"><?= $carro['modelo'] ?></strong>
                                             <p class="text-secondary"><b><?= $carro['ano'] ?></b></p>
                                         </div>
                                         <span class="d-flex">
-                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<?= $carro['id'] ?>', '<?= SITE . "app/?fn=update" ?>')">
+                                            <a class="btn text-primary" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo('<? = $carro['id'] ?>', '<?= SITE . "app/?fn=update" ?>')">
                                                 <i class="fas fa-edit fa-2x"></i>
                                             </a>
                                         </span>
@@ -99,29 +100,35 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 p-lg-2 p-sm-0 mt-lg-0 mt-md-2 order-lg-last order-md-first mb-md-3">
-                    <div class="bg-light pt-4 px-3 pb-2 shadow-sm d-inline-block h-100 position-relative">
+                    <div class="bg-light pt-4 px-3 pb-2 shadow-sm d-inline-block h-100 position-relative w-100">
                         <h6 class="text-secondary"><b>Detalhes do veículo</b></h6>
                         <hr>
-                        <h5 class="text-primary"><b>Uno Vivace</b></h5>
+                        <h5 class="text-primary">
+                            <b id="cur-vehicle-modelo">
+                                <?= $veiculos[0]['modelo'] ?>
+                            </b></h5>
                         <div class="row">
                             <div class="col-6">
                                 <span class="text-light">MARCA</span><br>
-                                <strong>FIAT</strong>
+                                <strong id="cur-vehicle-marca">
+                                    <?= $veiculos[0]['marca'] ?>
+                                </strong>
                             </div>
                             <div class="col-6">
                                 <span class="text-light">ANO</span><br>
-                                <strong>2015</strong>
+                                <strong id="cur-vehicle-ano">
+                                    <?= $veiculos[0]['ano'] ?>
+                                </strong>
                             </div>
                         </div>
                         <div class="row">
-                            <p class="mt-3 pb-sm-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur arcu sit amet odio dapibus, et auctor eros porttitor. Nulla non nisi vitae ante porttitor rhoncus et eu dui.
-                                Fusce ac neque in sapien tempus feugiat. Nulla non augue congue, egestas lectus et, posuere elit.
+                            <p class="mt-3 pb-sm-5" id="cur-vehicle-desc">
+                                <?= $veiculos[0]['descricao'] ?>
                             </p>
                         </div>
                         <div class="row px-3 d-flex justify-content-end position-absolute bottom-0 w-100 mb-3 mt-sm-5 mb-sm-2 pt-sm-5">
                             <hr>
-                            <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo()">EDITAR</button>
+                            <button type="button" class="btn btn-primary w-auto rounded-0 px-5" data-toggle="modal" data-target="#modalVeiculo" onclick="editarVeiculo(<?= $veiculos[0]['id'] ?>)">EDITAR</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +143,7 @@
                                     <div class="form-group my-3">
                                         <span class="text-danger text-center d-none" id="msg-form">Preencha os campos necessários!</span><br>
                                         <label for="modelo-carro">Veículo</label>
-                                        <input type="text" class="form-control" id="modelo-carro" name="modelo-carro" aria-describedby="emailHelp" value="Uno Vivace">
+                                        <input type="text" class="form-control" id="modelo-carro" name="modelo-carro" aria-describedby="emailHelp">
                                     </div>
                                     <div class="row my-3">
                                         <div class="form-group col-6">
